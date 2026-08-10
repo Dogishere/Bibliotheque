@@ -1,7 +1,7 @@
 import Sidebar from "../components/Sidebar";
 
 
-export default function Dashboard () {
+export default function Loans () {
     return ( 
         <div className="flex">
             <Sidebar/>

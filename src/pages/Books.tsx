@@ -1,7 +1,7 @@
 import Sidebar from "../components/Sidebar";
 
 
-export default function Dashboard () {
+export default function Books () {
     return ( 
         <div className="flex">
             <Sidebar/>
