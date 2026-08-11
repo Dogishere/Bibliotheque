@@ -53,7 +53,7 @@ export default function Sidebar() {
             </div>
 
              {/*desktop nav*/}           
-            <aside className="invisible md:visible md:w-60 text-white bg-amber-700" >
+            <aside className="hidden md:block md:w-60 text-white bg-amber-700" >
                 <div className=" h-screen">
                     <div >
                         <p className="font-bold text-3xl text-center p-6 flex items-center justify-center"><FaBook className="mr-2" />BOOKEO</p><hr className="w-10/12 m-auto opacity-60" />
