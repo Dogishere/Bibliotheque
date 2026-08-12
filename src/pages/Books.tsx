@@ -1,7 +1,19 @@
+import AddBookModal from "../components/AddBookModal";
 import Sidebar from "../components/Sidebar";
-
+import { useState } from "react";
 
 export default function Books() {
+    const [isOpen,setIsOpen] = useState(false);
+
+    function handleClick(){
+        if(!isOpen){
+            setIsOpen(true)
+        }
+        else {
+            setIsOpen(false)
+        }
+    }
+
     return (
         <div className="flex">
             <Sidebar />
@@ -11,34 +23,82 @@ export default function Books() {
                         Livres
                     </p>
 
-                    <button className="mr-5 rounded-lg bg-amber-600 px-5 py-2.5 text-white cursor-pointer hover:bg-amber-700">
+                    <button className="mr-5 rounded-lg bg-amber-600 px-5 py-2.5 text-white cursor-pointer hover:bg-amber-700" onClick={handleClick}>
                         Ajouter
                     </button>
                 </div>
                 <div className="flex justify-center mt-6">
-                    <input type="text" className="p-2 w-2/5 border rounded-s-lg border-gray-400 focus:border-gray-600"/>
+                    <input type="search" className="p-2 w-2/5 border rounded-s-lg border-gray-400 focus:border-gray-600" />
                     <button className="rounded-e-lg bg-amber-600 px-5 py-2.5 text-white cursor-pointer hover:bg-amber-700">
                         Rechercher
                     </button>
                 </div>
-                <div>
-                    <table className="table-auto">
-                        <thead>
+
+                <div className=" mt-4 rounded-lg border border-gray-200">
+                    <table className="w-full text-left text-sm text-gray-600">
+                        <thead className="bg-gray-100 text-xs uppercase text-gray-700">
                             <tr>
-                                <th>Livre</th>
-                                <th>Catégorie</th>
-                                <th>Auteur</th>
-                                <th>Numéro</th>
-                                <th>Membre</th>
-                                <th>Date d'emprunt</th>
-                                <th>Date de retour</th>
-                                <th>Status</th>
-                                <th>Action</th>
+                                <th className="px-6 py-3">Titre</th>
+                                <th className="px-6 py-3">Auteur</th>
+                                <th className="px-6 py-3">Année</th>
+                                <th className="px-6 py-3">Genre</th>
+                                <th className="px-6 py-3">Statut</th>
                             </tr>
                         </thead>
+
+                        <tbody>
+                            <tr className="border-b bg-white hover:bg-gray-50">
+                                <td className="px-6 py-4 font-medium text-gray-900">
+                                    Les Misérables
+                                </td>
+
+                                <td className="px-6 py-4">
+                                    Victor Hugo
+                                </td>
+
+                                <td className="px-6 py-4">
+                                    1862
+                                </td>
+
+                                <td className="px-6 py-4">
+                                    Roman
+                                </td>
+
+                                <td className="px-6 py-4">
+                                    <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">
+                                        Disponible
+                                    </span>
+                                </td>
+                            </tr>
+
+                            <tr className="border-b bg-white hover:bg-gray-50">
+                                <td className="px-6 py-4 font-medium text-gray-900">
+                                    Le Petit Prince
+                                </td>
+
+                                <td className="px-6 py-4">
+                                    Antoine de Saint-Exupéry
+                                </td>
+
+                                <td className="px-6 py-4">
+                                    1943
+                                </td>
+
+                                <td className="px-6 py-4">
+                                    Conte
+                                </td>
+
+                                <td className="px-6 py-4">
+                                    <span className="rounded-full bg-red-100 px-3 py-1 text-xs font-medium text-red-700">
+                                        Emprunté
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
                     </table>
                 </div>
             </div>
+            {isOpen && (<AddBookModal handleClick={handleClick}/>)}
         </div>
     );
 }

@@ -16,7 +16,7 @@ export default function Dashboard() {
                     </p>
                 </div>
                 <div className=" p-2 grid grid-cols-3 gap-3">
-                    <Card title="Livre" value="0" icon={FaBook} />
+                    <Card title="Livres" value="0" icon={FaBook} />
                     <Card title="Emprunts" value="0" icon={FaHandHolding} />
                     <Card title="Membres" value="0" icon={FaUser} />
                 </div>
