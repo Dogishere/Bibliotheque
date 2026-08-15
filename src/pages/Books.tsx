@@ -3,20 +3,17 @@ import Sidebar from "../components/Sidebar";
 import { useState } from "react";
 
 export default function Books() {
-    const [isOpen,setIsOpen] = useState(false);
+    const [isOpen, setIsOpen] = useState(false);
 
-    function handleClick(){
-        if(!isOpen){
-            setIsOpen(true)
-        }
-        else {
-            setIsOpen(false)
-        }
+    function handleClick() {
+            setIsOpen(!isOpen)  
     }
 
     return (
-        <div className="flex">
-            <Sidebar />
+        <div className="flex flex-col md:flex-row">
+            <div className="">
+                <Sidebar />
+            </div>
             <div className="flex-1">
                 <div className="flex items-center justify-between border-b border-gray-300">
                     <p className="text-4xl text-gray-600 p-5">
@@ -98,7 +95,7 @@ export default function Books() {
                     </table>
                 </div>
             </div>
-            {isOpen && (<AddBookModal handleClick={handleClick}/>)}
+            {isOpen && (<AddBookModal handleClick={handleClick} />)}
         </div>
     );
 }
