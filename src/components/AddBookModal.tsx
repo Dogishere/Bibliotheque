@@ -1,4 +1,32 @@
-export default function AddBookModal({ handleClick }) {
+import { useState } from "react";
+import { useDispatch } from "react-redux";
+import type { Book } from "../types/types";
+import { addBook } from "../features/booksSlice";
+
+export default function AddBookModal({ handleClick}) {
+    const [title,setTitle] = useState("");
+    const [author,setAuthor] = useState("");
+    const [year,setYear] = useState("");
+    const [genre,setGenre] = useState("");
+    const dispatch = useDispatch();
+
+
+
+     function handleSubmit(e: React.SubmitEvent<HTMLFormElement>){
+        e.preventDefault();
+        const book : Book = {
+            title,
+            author,
+            year: Number(year),
+            genre,
+            status :"available"
+        }
+        dispatch(addBook(book));
+        handleClick();  
+    }
+
+
+
     return (
         <div>
             <div className="fixed inset-0 flex items-center justify-center bg-black/50">
@@ -7,38 +35,42 @@ export default function AddBookModal({ handleClick }) {
                     <h2 className="text-2xl font-semibold pb-4">
                         Ajouter un livre
                     </h2>
+                    <span>{title}</span>
+                        <form action="#" onSubmit={(e)=>handleSubmit(e)}>
                     <div>
+                            
                         <div className="py-2">
                             <label htmlFor="title">
                                 Titre :
-                                <input type="text" name="title" id="title" className="block w-full p-2 border border-gray-400 rounded-md"  />
+                                <input required type="text" value={title} name="title" id="title" className="block w-full p-2 border border-gray-400 rounded-md" onChange={(e)=>setTitle(e.target.value)} />
                             </label>
                         </div>
                         <div className="py-2">
 
                             <label htmlFor="author">
                                 Auteur :
-                                <input type="text" name="author" id="author" className="block w-full  p-2 border border-gray-400 rounded-md"/>
+                                <input required value={author} onChange={(e)=>setAuthor(e.target.value)} type="text" name="author" id="author" className="block w-full  p-2 border border-gray-400 rounded-md"/>
                             </label>
                         </div>
                         <div className="py-2">
 
                             <label htmlFor="year">
                                 Année :
-                                <input type="text" name="year" id="year" className="block w-full  p-2 border border-gray-400 rounded-md"/>
+                                <input required value={year} onChange={(e)=>setYear(e.target.value)} type="text" name="year" id="year" className="block w-full  p-2 border border-gray-400 rounded-md"/>
                             </label>
                         </div>
                         <div className="py-2">
 
                             <label htmlFor="genre">
                                 Genre :
-                                <input type="text" name="genre" id="genre" className="block w-full p-2 border border-gray-400 rounded-md"/>
+                                <input required value={genre} onChange={(e)=>setGenre(e.target.value)} type="text" name="genre" id="genre" className="block w-full p-2 border border-gray-400 rounded-md"/>
                             </label>
                         </div>
                     </div>
                     <div>
-                        <button className=" mt-2 w-full rounded-lg bg-amber-600 px-5 py-2.5 text-white cursor-pointer hover:bg-amber-700">Ajouter</button>
+                        <button className=" mt-2 w-full rounded-lg bg-amber-600 px-5 py-2.5 text-white cursor-pointer hover:bg-amber-700" type="submit">Ajouter</button>
                     </div>
+                        </form>
                 </div>
             </div>
         </div>

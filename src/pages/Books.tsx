@@ -1,21 +1,24 @@
 import AddBookModal from "../components/AddBookModal";
 import Sidebar from "../components/Sidebar";
 import { useState } from "react";
+import { useSelector} from "react-redux";
+import type { RootState } from "../app/store";
+
+
+
 
 export default function Books() {
     const [isOpen,setIsOpen] = useState(false);
+    const books = useSelector((state: RootState) => state.books); 
 
     function handleClick(){
-        if(!isOpen){
-            setIsOpen(true)
-        }
-        else {
-            setIsOpen(false)
-        }
+       setIsOpen(!isOpen)
     }
 
+   
+
     return (
-        <div className="flex">
+        <div className="flex flex-col md:flex-row">
             <Sidebar />
             <div className="flex-1">
                 <div className="flex items-center justify-between border-b border-gray-300">
@@ -46,59 +49,37 @@ export default function Books() {
                             </tr>
                         </thead>
 
-                        <tbody>
-                            <tr className="border-b bg-white hover:bg-gray-50">
+                        <tbody>{ books.map((book) =>(
+                            <tr  key={book.title} className="border-b bg-white hover:bg-gray-50">
                                 <td className="px-6 py-4 font-medium text-gray-900">
-                                    Les Misérables
+                                    {book.title}
                                 </td>
 
                                 <td className="px-6 py-4">
-                                    Victor Hugo
+                                    {book.author}
                                 </td>
 
                                 <td className="px-6 py-4">
-                                    1862
+                                    {book.year}
                                 </td>
 
                                 <td className="px-6 py-4">
-                                    Roman
+                                    {book.genre}
                                 </td>
 
                                 <td className="px-6 py-4">
                                     <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">
-                                        Disponible
+                                        {book.status}
                                     </span>
                                 </td>
                             </tr>
-
-                            <tr className="border-b bg-white hover:bg-gray-50">
-                                <td className="px-6 py-4 font-medium text-gray-900">
-                                    Le Petit Prince
-                                </td>
-
-                                <td className="px-6 py-4">
-                                    Antoine de Saint-Exupéry
-                                </td>
-
-                                <td className="px-6 py-4">
-                                    1943
-                                </td>
-
-                                <td className="px-6 py-4">
-                                    Conte
-                                </td>
-
-                                <td className="px-6 py-4">
-                                    <span className="rounded-full bg-red-100 px-3 py-1 text-xs font-medium text-red-700">
-                                        Emprunté
-                                    </span>
-                                </td>
-                            </tr>
+                        ))
+                            }
                         </tbody>
                     </table>
                 </div>
             </div>
-            {isOpen && (<AddBookModal handleClick={handleClick}/>)}
+            {isOpen && (<AddBookModal handleClick={handleClick} />)}
         </div>
     );
 }

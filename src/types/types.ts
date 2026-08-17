@@ -9,5 +9,5 @@ export interface Book{
     author: string;
     year: number;
     genre: string;
-    status: "available" | "borrowed"
+    status?: "available" | "borrowed"
 }
