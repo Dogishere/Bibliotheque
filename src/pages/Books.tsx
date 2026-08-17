@@ -14,7 +14,7 @@ export default function Books() {
     function handleClick(){
        setIsOpen(!isOpen)
     }
-
+    console.log(books)
    
 
     return (

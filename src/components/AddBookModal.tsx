@@ -9,12 +9,13 @@ export default function AddBookModal({ handleClick}) {
     const [year,setYear] = useState("");
     const [genre,setGenre] = useState("");
     const dispatch = useDispatch();
-
+    let counter = 0;    
 
 
      function handleSubmit(e: React.SubmitEvent<HTMLFormElement>){
         e.preventDefault();
         const book : Book = {
+            id: `book-${counter++}`,
             title,
             author,
             year: Number(year),
