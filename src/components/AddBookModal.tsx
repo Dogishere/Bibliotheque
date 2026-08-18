@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import type { Book } from "../types/types";
 import { addBook } from "../features/booksSlice";
+import type { RootState } from "../app/store";
 
 export default function AddBookModal({ handleClick}) {
     const [title,setTitle] = useState("");
@@ -9,13 +10,13 @@ export default function AddBookModal({ handleClick}) {
     const [year,setYear] = useState("");
     const [genre,setGenre] = useState("");
     const dispatch = useDispatch();
-    let counter = 0;    
+    const books = useSelector((state:RootState)=>state.books)
 
 
      function handleSubmit(e: React.SubmitEvent<HTMLFormElement>){
         e.preventDefault();
         const book : Book = {
-            id: `book-${counter++}`,
+            id: `book-${books.length}`,
             title,
             author,
             year: Number(year),
