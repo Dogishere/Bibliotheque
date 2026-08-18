@@ -1,13 +1,13 @@
 import Sidebar from "../components/Sidebar"
 import { useState } from "react";
-import AddBookModal from "../components/AddBookModal"
+import AddMemberModal from "../components/AddMemberModal"
 import { useSelector } from "react-redux";
 import type { RootState } from "../app/store";
 
 export default function Members() {
 
      const [isOpen,setIsOpen] = useState(false);
-    const books = useSelector((state: RootState) => state.books); 
+    const members = useSelector((state: RootState) => state.members); 
 
     function handleClick(){
        setIsOpen(!isOpen)
@@ -36,36 +36,34 @@ export default function Members() {
                             <table className="w-full text-left text-sm text-gray-600">
                                 <thead className="bg-gray-100 text-xs uppercase text-gray-700">
                                     <tr>
-                                        <th className="px-6 py-3">Titre</th>
-                                        <th className="px-6 py-3">Auteur</th>
-                                        <th className="px-6 py-3">Année</th>
-                                        <th className="px-6 py-3">Genre</th>
-                                        <th className="px-6 py-3">Statut</th>
+                                        <th className="px-6 py-3">Id</th>
+                                        <th className="px-6 py-3">Nom</th>
+                                        <th className="px-6 py-3">Prénom(s)</th>
+                                        <th className="px-6 py-3">email</th>
+                                        <th className="px-6 py-3">date d'inscription</th>
                                     </tr>
                                 </thead>
         
-                                <tbody>{ books.map((book) =>(
-                                    <tr  key={book.title} className="border-b bg-white hover:bg-gray-50">
+                                <tbody>{ members.map((member) =>(
+                                    <tr  key={member.id} className="border-b bg-white hover:bg-gray-50">
                                         <td className="px-6 py-4 font-medium text-gray-900">
-                                            {book.title}
+                                            {member.id}
                                         </td>
         
                                         <td className="px-6 py-4">
-                                            {book.author}
+                                            {member.firstName}
                                         </td>
         
                                         <td className="px-6 py-4">
-                                            {book.year}
+                                            {member.lastName}
                                         </td>
         
                                         <td className="px-6 py-4">
-                                            {book.genre}
+                                            {member.email}
                                         </td>
         
                                         <td className="px-6 py-4">
-                                            <span className="rounded-full bg-green-100 px-3 py-1 text-xs font-medium text-green-700">
-                                                {book.status}
-                                            </span>
+                                            {member.registrationDate}
                                         </td>
                                     </tr>
                                 ))
@@ -74,7 +72,7 @@ export default function Members() {
                             </table>
                         </div>
                     </div>
-                    {isOpen && (<AddBookModal handleClick={handleClick} />)}
+                    {isOpen && (<AddMemberModal handleClick={handleClick} />)}
                 </div>
     )
 }
