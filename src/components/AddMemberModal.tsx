@@ -11,6 +11,8 @@ export default function AddMemberModal({ handleClick}) {
     const dispatch = useDispatch();
     const members = useSelector((state:RootState)=>state.members)
 
+    
+
      function handleSubmit(e: React.SubmitEvent<HTMLFormElement>){
         e.preventDefault();
         const member : Member = {
@@ -21,6 +23,8 @@ export default function AddMemberModal({ handleClick}) {
             registrationDate: new Date().toISOString().split("T")[0],
         }
         dispatch(addMember(member));
+        localStorage.setItem("members",JSON.stringify(members))
+
         handleClick();  
     }
 

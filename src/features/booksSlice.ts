@@ -2,7 +2,7 @@ import { createSlice ,type PayloadAction } from "@reduxjs/toolkit";
 import type { Book } from "../types/types";
 
 const initialState: Book[] = [];
-
+console.log(JSON.parse(localStorage.getItem("books")))
 const booksSlice = createSlice({
     name:"books",
     initialState,

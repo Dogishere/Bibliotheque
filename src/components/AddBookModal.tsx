@@ -21,9 +21,10 @@ export default function AddBookModal({ handleClick}) {
             author,
             year: Number(year),
             genre,
-            status :"available"
+            status :"disponible"
         }
         dispatch(addBook(book));
+        localStorage.setItem("books",JSON.stringify(books))
         handleClick();  
     }
 

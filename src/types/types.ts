@@ -10,7 +10,7 @@ export interface Book{
     author: string;
     year: number;
     genre: string;
-    status?: "available" | "borrowed"
+    status?: "disponible" | "emprunté"
 }
 
 export interface Member {
